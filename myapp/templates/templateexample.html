@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Template Example</title>
+</head>
+<body>
+    <h1>Soy Template Example</h1><br/>
+    <h2>El nombre del libro es: {{ title|upper|slice:':5' }}</h2>
+    <h3>Elemento de lista: {{ lista.0 }}</h3>
+    <h4>Elemento de diccionario: {{ diccionario.name|upper }}</h4>
+    <ul>
+        {% for foo in lista %}
+            <li>{{ foo }}</li>
+        {% endfor %}
+    </ul>
+    <h4>
+        {% if 1 == 1 %}
+            La fecha es {% now 'd-m-Y' %}
+        {% endif %}
+    </h4>
+</body>
+</html>

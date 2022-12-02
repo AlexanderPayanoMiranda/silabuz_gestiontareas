@@ -121,3 +121,40 @@ class showProf(View):
         salario = request.session['salario']
 
         return HttpResponse(f'El nombre del profesor es: {nombre} {apellido} y  su salario es: {salario}')
+
+
+class NoTemplate(View):
+    def get(self, request):
+        response = """
+            <html>
+                <body>
+                    <h1>Soy NoTemplate</h1>
+                </body>
+            </html>
+        """
+
+        return HttpResponse(response)
+
+
+class TemplateExample(View):
+    def get(self, request):
+        context = {
+            'title': 'harry potter',
+            'lista': [1, 2, 3, 4, 5],
+            'diccionario': {
+                'name': 'marcos',
+                'last_name': 'alvarez'
+            }
+        }
+
+        return render(request, 'templateexample.html', context)
+
+
+class Otro(View):
+    def get(self, request):
+        return render(request, 'otro.html')
+
+
+class TemplateView(View):
+    def get(self, request):
+        return render(request, 'about.html')
