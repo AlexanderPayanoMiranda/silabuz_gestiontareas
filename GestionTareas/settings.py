@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'myapp.apps.MyappConfig',
+    'vitrina.apps.VitrinaConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
