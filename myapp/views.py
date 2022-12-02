@@ -128,7 +128,7 @@ class NoTemplate(View):
         response = """
             <html>
                 <body>
-                    <h1>Soy NoTemplate</h1>
+                    <h1>Yo soy NoTemplate</h1>
                 </body>
             </html>
         """
@@ -136,25 +136,20 @@ class NoTemplate(View):
         return HttpResponse(response)
 
 
-class TemplateExample(View):
+class TemplateView(View):
     def get(self, request):
         context = {
             'title': 'harry potter',
-            'lista': [1, 2, 3, 4, 5],
+            'list': [1, 2, 3, 4, 5],
             'diccionario': {
-                'name': 'marcos',
-                'last_name': 'alvarez'
+                'first_name': 'pablo',
+                'last_name': 'santivañez'
             }
         }
 
-        return render(request, 'templateexample.html', context)
+        return render(request, 'TemplateView.html', context)
 
 
 class Otro(View):
     def get(self, request):
         return render(request, 'otro.html')
-
-
-class TemplateView(View):
-    def get(self, request):
-        return render(request, 'about.html')
