@@ -16,3 +16,20 @@ class Books(models.Model):
 
     def __str__(self):
         return self.title
+
+    def to_json(self):
+        book_in_json = {
+            'title': self.title,
+            'authors': self.authors,
+            'average_rating': self.average_rating,
+            'isbn': self.isbn,
+            'isbn13': self.isbn13,
+            'language_code': self.language_code,
+            'num_pages': self.num_pages,
+            'ratings_count': self.ratings_count,
+            'text_reviews_count': self.text_reviews_count,
+            'publication_date': str(self.publication_date),
+            'publisher': self.publisher
+        }
+
+        return book_in_json

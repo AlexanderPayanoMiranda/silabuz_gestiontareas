@@ -24,7 +24,7 @@ from myapp.views import (
 )
 
 from vitrina.views import (
-    BookList, BootstrapEj
+    BookList, BootstrapEj, SelectBook, ViewSession, InsertBook
 )
 
 urlpatterns = [
@@ -43,4 +43,7 @@ urlpatterns = [
     path('Otro/', Otro.as_view(), name='Otro'),
     path('booklist/', BookList.as_view(), name='booklist'),
     path('bootstrapej/', BootstrapEj.as_view(), name='bootstrapej'),
+    path('SelectBook/<id>', SelectBook.as_view(), name='SelectBook'),
+    path('ViewSession/', ViewSession.as_view(), name='ViewSession'),
+    path('InsertBook/', InsertBook.as_view(), name='InsertBook'),
 ]
