@@ -136,6 +136,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 
 
+# PYMEMCACHE CACHE
 # To be able to use memcache, you need to install memcached on your platform
 # Releases for Windows can be found on https://github.com/jefyt/memcached-windows/releases/tag/1.6.8_mingw
 # The following command are used when using Memcached
@@ -149,3 +150,25 @@ CACHES = {
         'LOCATION': ['127.0.0.1:11211', '127.0.0.2:11211', '127.0.0.3:11211'],
     }
 }
+
+
+# DB CACHE
+# Before using, you need to create the cache table with:
+# python manage.py createcachetable
+# The name of the table is taken from the LOCATION variable below.
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+#         'LOCATION': 'my_cache_table',
+#     }
+# }
+
+
+# FILESYSTEM CACHE
+# The configuration below will save the cache to the path shown below.
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+#         'LOCATION': 'D:/django_cache',
+#     }
+# }
