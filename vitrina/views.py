@@ -5,11 +5,14 @@ from django.views.generic.list import ListView
 
 from vitrina.models import Books
 from vitrina.forms import BookInsert
+from vitrina import utils
 
 
 class BookList(ListView):
     model = Books
     template_name = 'booklist.html'
+    # Added query to limit amount of results
+    queryset = Books.objects.filter()[:30]
 
 
 class SelectBook(View):
@@ -21,7 +24,7 @@ class SelectBook(View):
             request.session['title'] = book.title
             request.session['authors'] = book.authors
 
-            request.session[nombre] = book.toJson()
+            request.session[nombre] = book.to_json()
             valor = request.session[nombre]
 
             context = {'book': book}
@@ -64,3 +67,38 @@ class ViewSession(View):
 class BootstrapEj(View):
     def get(self, request):
         return render(request, 'ejemplo_bootstrap.html')
+
+
+# This class is created instead of select_book that is shown in the workshop guide of caches
+class SelectBookTwo(View):
+    def get(self, request, id):
+        book = Books.objects.filter(pk=id).first()
+        request.session['authors'] = book.authors
+        context = {
+            'book_id': id,
+            'book': book.to_json()
+        }
+
+        return render(request, 'oneBook.html', context)
+
+
+class BookAuthor(View):
+    def get(self, request, id):
+        context = {
+            'authors': request.session['authors']
+        }
+
+        if utils.check_author_session(id, context['authors']):
+            return render(request, 'author.html', context)
+        else:
+            context = {
+                'authors': 'El autor no se encuentra guardado en la sesion.'
+            }
+            return render(request, 'author.html', context)
+
+
+class ListBooks(ListView):
+    model = Books
+    template_name = 'ListBooks.html'
+    # Added query to limit amount of results
+    queryset = Books.objects.filter()[:10]

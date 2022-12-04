@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>oneBook</title>
+{% endblock %}
+
+{% block content %}
+    <ul class="list-group">
+        <li class="list-group-item">{{ book.title }}</li>
+        <li class="list-group-item">
+            <a href="{% url 'book_author' book_id %}">{{ book.authors }}</a>
+        </li>
+        <li class="list-group-item">{{ book.average_rating }}</li>
+        <li class="list-group-item">{{ book.isbn }}</li>
+    </ul>
+{% endblock %}

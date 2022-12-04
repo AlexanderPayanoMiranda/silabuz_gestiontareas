@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Soy ListBooks</title>
+{% endblock %}
+
+{% block content %}
+    <ul class="list-group">
+        {% for object in object_list %}
+            <div style="background-color: {% cycle 'lightblue' 'pink' 'yellow' 'coral' 'grey' %}">
+                {% filter upper %}
+                    {% if object.language_code == 'eng' or object.language_code == 'en-US' or object.language_code == 'en-CA' or object.language_code == 'en-GB' %}
+                        <li class="list-group-item">Languages: 🇺🇸 🇬🇧 ({{ object.language_code|upper }})</li>
+                    {% endif %}
+                    <li class="list-group-item">📖 {{ object.title }}</li>
+                {% endfilter %}
+                <li class="list-group-item">Authors: {{ object.authors }}</li>
+                {% if object.authors|length <= 30 %}
+                    <li class="list-group-item">Tamaño del autor es: {{ object.authors|length }}</li>
+                {% endif %}
+                {% if object.publisher|length <= 20 %}
+                    <li class="list-group-item">Publisher: {{ object.publisher }}</li>
+                {% endif %}
+                {% if object.text_reviews_count > 10 %}
+                    <li class="list-group-item">Reviews: {{ object.text_reviews_count }}</li>
+                {% endif %}
+            </div>
+            <hr/>
+        {% empty %}
+            <li>No hay libros para mostrar.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

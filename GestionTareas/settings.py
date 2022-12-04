@@ -130,3 +130,22 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Cache Sessions Engine
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+
+
+# To be able to use memcache, you need to install memcached on your platform
+# Releases for Windows can be found on https://github.com/jefyt/memcached-windows/releases/tag/1.6.8_mingw
+# The following command are used when using Memcached
+# path_to_memcached\memcached.exe -d install
+# path_to_memcached\memcached.exe -d start
+# path_to_memcached\memcached.exe -d stop
+CACHES = {
+    'default': {
+        # Following documentation update, using pip install pymemcache
+        'BACKEND': 'django.core.cache.backends.memcached.PyMemcacheCache',
+        'LOCATION': ['127.0.0.1:11211', '127.0.0.2:11211', '127.0.0.3:11211'],
+    }
+}
