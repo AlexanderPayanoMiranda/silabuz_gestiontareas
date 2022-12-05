@@ -3,8 +3,9 @@ from django.http import HttpResponse
 from django.views import View
 from django.views.generic.list import ListView
 
+from vitrina.tasks import send_book
 from vitrina.models import Books
-from vitrina.forms import BookInsert
+from vitrina.forms import BookInsert, InputForm
 from vitrina import utils
 
 
@@ -73,13 +74,23 @@ class BootstrapEj(View):
 class SelectBookTwo(View):
     def get(self, request, id):
         book = Books.objects.filter(pk=id).first()
+
         request.session['authors'] = book.authors
+        request.session['id'] = id
+
         context = {
             'book_id': id,
-            'book': book.to_json()
+            'book': book.to_json(),
+            'form': InputForm()
         }
 
         return render(request, 'oneBook.html', context)
+
+    def post(self, request, id):
+        form = InputForm(request.POST)
+        if form.is_valid():
+            send_book.delay(form.cleaned_data['nombre'], form.cleaned_data['email'])
+            return HttpResponse(form.cleaned_data['nombre'] + " " + form.cleaned_data['email'])
 
 
 class BookAuthor(View):

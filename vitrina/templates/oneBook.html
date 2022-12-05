@@ -13,4 +13,11 @@
         <li class="list-group-item">{{ book.average_rating }}</li>
         <li class="list-group-item">{{ book.isbn }}</li>
     </ul>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Enviar datos">
+    </form>
+
 {% endblock %}
