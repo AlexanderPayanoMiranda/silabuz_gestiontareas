@@ -25,7 +25,8 @@ from myapp.views import (
 
 from vitrina.views import (
     BookList, BootstrapEj, SelectBook, ViewSession,
-    InsertBook, SelectBookTwo, BookAuthor, ListBooks
+    InsertBook, SelectBookTwo, BookAuthor, ListBooks,
+    UpdateBook
 )
 
 urlpatterns = [
@@ -54,5 +55,6 @@ urlpatterns = [
     path('ViewSession/', ViewSession.as_view(), name='ViewSession'),
     path('InsertBook/', InsertBook.as_view(), name='InsertBook'),
     # Usage of cache_page
-    path('ListBooks/', cache_page(60*10)(ListBooks.as_view()), name='ListBooks')
+    path('ListBooks/', cache_page(60*10)(ListBooks.as_view()), name='ListBooks'),
+    path('UpdateBook/<id>', UpdateBook.as_view(), name='UpdateBook')
 ]

@@ -90,10 +90,23 @@ DATABASES = {
 }
 
 
+# Email Settings
+# Modify EMAIL_HOST_USER and EMAIL_HOST_PASSWORD to your own email to send emails
+# Using Outlook SMTP server instead of Gmail
+# The SMTP server  of Gmail not working properly
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp-mail.outlook.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'randommail'
+EMAIL_HOST_PASSWORD = 'randompassword'
+EMAIL_USE_TLS = True
+
+
 # Celery settings
 CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
 CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
-
+# CELERY_ACCEPT_CONTENT = ['json']
+# CELERY_TASK_SERIALIZER = 'json'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
