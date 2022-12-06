@@ -21,11 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# DO NOT PUSH TO REPOSITORY
 SECRET_KEY = 'django-insecure-se2l&hr!f%+z^xkhf$)m=x)zpd+qpe2a3m69=1xr+4o_dl5c5y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# DO NOT PUSH TO REPOSITORY
 ALLOWED_HOSTS = []
 
 
@@ -77,14 +79,18 @@ WSGI_APPLICATION = 'GestionTareas.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
+        # DO NOT PUSH TO REPOSITORY
         'NAME': 'gestion_tareas',
+        # DO NOT PUSH TO REPOSITORY
         'USER': 'root',
+        # DO NOT PUSH TO REPOSITORY
         'PASSWORD': 'jV#%rh5ujnX3kSnBg#xYEP7L',
+        # DO NOT PUSH TO REPOSITORY
         'HOST': 'localhost',
+        # DO NOT PUSH TO REPOSITORY
         'PORT': '3306'
     }
 }
@@ -97,9 +103,11 @@ DATABASES = {
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp-mail.outlook.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'randommail'
-EMAIL_HOST_PASSWORD = 'randompassword'
 EMAIL_USE_TLS = True
+# DO NOT PUSH TO REPOSITORY
+EMAIL_HOST_USER = 'randommail'
+# DO NOT PUSH TO REPOSITORY
+EMAIL_HOST_PASSWORD = 'randompassword'
 
 
 # Celery settings
@@ -165,6 +173,7 @@ CACHES = {
     'default': {
         # Following documentation update, using pip install pymemcache
         'BACKEND': 'django.core.cache.backends.memcached.PyMemcacheCache',
+        # DO NOT PUSH TO REPOSITORY
         'LOCATION': ['127.0.0.1:11211', '127.0.0.2:11211', '127.0.0.3:11211'],
     }
 }
@@ -177,6 +186,7 @@ CACHES = {
 # CACHES = {
 #     'default': {
 #         'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        # DO NOT PUSH TO REPOSITORY
 #         'LOCATION': 'my_cache_table',
 #     }
 # }
@@ -187,6 +197,7 @@ CACHES = {
 # CACHES = {
 #     'default': {
 #         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        # DO NOT PUSH TO REPOSITORY
 #         'LOCATION': 'D:/django_cache',
 #     }
 # }
